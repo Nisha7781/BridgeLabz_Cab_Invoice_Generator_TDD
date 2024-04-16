@@ -1,4 +1,5 @@
 package org.example;
+import java.util.List;
 
 public class CabInvoiceService
 {
@@ -16,6 +17,11 @@ public class CabInvoiceService
         {
             return TotalFare;
         }
+    }
+
+    public double calculateFare(List<Ride> rides)
+    {
+        return 0;
     }
 
 }
