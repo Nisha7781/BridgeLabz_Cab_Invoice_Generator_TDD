@@ -1,5 +1,6 @@
 package org.example;
 import java.util.List;
+import java.lang.Math;
 
 public class CabInvoiceService
 {
@@ -9,19 +10,17 @@ public class CabInvoiceService
     public double calculateFare(double distance, int time)
     {
         double TotalFare =  distance * CostPerKM + time * RatePerMin;
-        if(TotalFare < MinimumFare)
-        {
-            return MinimumFare;
-        }
-        else
-        {
-            return TotalFare;
-        }
+        return Math.max(TotalFare, MinimumFare);
     }
 
     public double calculateFare(List<Ride> rides)
     {
-        return 0;
+        double TotalFare = 0;
+        for (Ride ride : rides)
+        {
+            TotalFare = TotalFare +  calculateFare(ride.getDistance(), ride.getTime());
+        }
+        return TotalFare;
     }
 
 }
