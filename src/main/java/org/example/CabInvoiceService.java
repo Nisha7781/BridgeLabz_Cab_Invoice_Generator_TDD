@@ -13,14 +13,18 @@ public class CabInvoiceService
         return Math.max(TotalFare, MinimumFare);
     }
 
-    public double calculateFare(List<Ride> rides)
+    public InvoiceDetails calculateFare(List<Ride> rides)
     {
         double TotalFare = 0;
+        int TotalRides = 0;
+        double avgFarePerRide = 0.0;
         for (Ride ride : rides)
         {
             TotalFare = TotalFare +  calculateFare(ride.getDistance(), ride.getTime());
         }
-        return TotalFare;
+        return new InvoiceDetails(TotalRides, TotalFare, avgFarePerRide);
     }
+
+
 
 }
