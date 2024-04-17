@@ -1,14 +1,24 @@
 package org.example;
 import java.util.List;
 import java.lang.Math;
-
 public class CabInvoiceService
 {
-    private static final double CostPerKM = 10;
-    private static final int RatePerMin = 1;
-    private static final int MinimumFare = 5;
+    private final RideRepository rideRepository;
+    public CabInvoiceService(RideRepository rideRepository)
+    {
+        this.rideRepository = rideRepository;
+    }
+
+    public CabInvoiceService()
+    {
+
+        rideRepository = new RideRepository();
+    }
     public double calculateFare(double distance, int time)
     {
+        final double CostPerKM = 10;
+        final int RatePerMin = 1;
+        final int MinimumFare = 5;
         double TotalFare =  distance * CostPerKM + time * RatePerMin;
         return Math.max(TotalFare, MinimumFare);
     }
@@ -29,5 +39,8 @@ public class CabInvoiceService
     }
 
 
-
+    public InvoiceDetails getInvoiceForUser(String userId)
+    {
+        return null;
+    }
 }

@@ -48,7 +48,8 @@ public class CabInvoiceServiceTest
     }
 
     @Test
-    public void givenMultipleRides_returnAvfFarePerRide() {
+    public void givenMultipleRides_returnAvfFarePerRide()
+    {
         CabInvoiceService cabInvoiceService = new CabInvoiceService();
         List<Ride> rides = new ArrayList<>();
         rides.add(new Ride(2.0, 5));
@@ -56,4 +57,24 @@ public class CabInvoiceServiceTest
         InvoiceDetails invoiceDetails = cabInvoiceService.calculateFare(rides);
         Assert.assertEquals(15, invoiceDetails.getAvgFarePerRide(),0.0);
     }
+
+    @Test
+    public void givenUserId_returnInvoiceForUser()
+    {
+        CabInvoiceService cabInvoiceService = new CabInvoiceService(new RideRepository());
+        String userId1 = "user1";
+        String userId2 = "user2";
+
+        InvoiceDetails invoiceDetails = cabInvoiceService.getInvoiceForUser(userId1);
+
+        Assert.assertEquals(2, invoiceDetails.getTotalRides());
+        Assert.assertEquals(30, invoiceDetails.getTotalFare(), 0.0);
+        Assert.assertEquals(15, invoiceDetails.getAvgFarePerRide(), 0.0);
+
+        InvoiceDetails invoiceDetails1 = cabInvoiceService.getInvoiceForUser(userId2);
+        Assert.assertEquals(1, invoiceDetails1.getTotalRides());
+        Assert.assertEquals(3.5, invoiceDetails1.getTotalFare(), 0.0);
+        Assert.assertEquals(3.5, invoiceDetails1.getAvgFarePerRide(), 0.0);
+    }
+
 }
