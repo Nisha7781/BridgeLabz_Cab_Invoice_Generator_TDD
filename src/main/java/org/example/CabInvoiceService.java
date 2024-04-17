@@ -16,12 +16,15 @@ public class CabInvoiceService
     public InvoiceDetails calculateFare(List<Ride> rides)
     {
         double TotalFare = 0;
-        int TotalRides = 0;
-        double avgFarePerRide = 0.0;
+        int TotalRides = rides.size();
+
         for (Ride ride : rides)
         {
             TotalFare = TotalFare +  calculateFare(ride.getDistance(), ride.getTime());
         }
+
+        double avgFarePerRide = TotalFare / TotalRides;
+
         return new InvoiceDetails(TotalRides, TotalFare, avgFarePerRide);
     }
 

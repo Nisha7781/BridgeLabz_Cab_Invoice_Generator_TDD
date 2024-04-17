@@ -44,7 +44,7 @@ public class CabInvoiceServiceTest
         rides.add(new Ride(2.0, 5));
         rides.add(new Ride(0.2, 1));
         InvoiceDetails invoiceDetails = cabInvoiceService.calculateFare(rides);
-        Assert.assertEquals(2, invoiceDetails.getTotalRides());
+        Assert.assertEquals(2, invoiceDetails.getTotalRides(),0.0);
     }
 
     @Test
