@@ -41,6 +41,7 @@ public class CabInvoiceService
 
     public InvoiceDetails getInvoiceForUser(String userId)
     {
-        return null;
+        List<Ride> userRides = rideRepository.getRideForUser(userId);
+        return calculateFare(userRides);
     }
 }
