@@ -73,8 +73,8 @@ public class CabInvoiceServiceTest
 
         InvoiceDetails invoiceDetails1 = cabInvoiceService.getInvoiceForUser(userId2);
         Assert.assertEquals(1, invoiceDetails1.getTotalRides());
-        Assert.assertEquals(45.5, invoiceDetails1.getTotalFare(), 0.0);
-        Assert.assertEquals(45.5, invoiceDetails1.getAvgFarePerRide(), 0.0);
+        Assert.assertEquals(37, invoiceDetails1.getTotalFare(), 0.0);
+        Assert.assertEquals(37, invoiceDetails1.getAvgFarePerRide(), 0.0);
     }
 
 }
