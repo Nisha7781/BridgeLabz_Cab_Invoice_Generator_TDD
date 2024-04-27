@@ -13,7 +13,6 @@ public class RideRepository
     {
         this.userRides = new HashMap<>();
         getSampleRides();
-
     }
 
     private void getSampleRides()
